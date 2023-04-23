@@ -1,0 +1,26 @@
+steps:
+# Compilação do container
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/gemini-382419/geminiapi', '.']
+
+# # Run database migrations
+
+#push
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/gemini-382419/geminiapi']
+
+# # Testes
+
+# Implantação no Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'run'
+    - 'deploy'
+    - 'geminiapi-services'
+    - '--image=gcr.io/gemini-382419/geminiapi'
+    - '--platform=managed'
+    - '--region=southamerica-east1'
+    - '--allow-unauthenticated'
+    - '--memory=2Gi'
+    - '--set-env-vars=FLASK_ENV=development,SECRET_KEY=prod,SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@35.198.19.103:5432/gemini,SQLALCHEMY_DATABASE_URI_ASNC=postgresql+asyncpg://postgres:postgres@35.198.19.103:5432/gemini,TEST_DATABASE_URI=sqlite:///test.db,FLASK_DEBUG=1'
+timeout: 1800s
