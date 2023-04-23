@@ -12,8 +12,8 @@ COPY src /app/src
 ENV SECRET_KEY=dev \
     FLASK_ENV=development \
     FLASK_APP=src \
-    SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@35.198.19.103:5432/gemini\
-    SQLALCHEMY_DATABASE_URI_ASNC=postgresql+asyncpg://postgres:postgres@35.198.19.103:5432/gemini\
+    SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres@34.95.195.135:5432/tcc\
+    SQLALCHEMY_DATABASE_URI_ASNC=postgresql+asyncpg://postgres:postgres@34.95.195.135:5432/tcc\
     TEST_DATABASE_URI=sqlite:///test.db \
     FLASK_DEBUG=1 \
     PORT=8080
