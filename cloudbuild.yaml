@@ -1,23 +1,23 @@
 steps:
 # Compilação do container
-- name: 'gcr.io/tccmba/docker'
-  args: ['build', '-t', 'gcr.io/tccmba/gcloud', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/tccmba/flask', '.']
 
 # # Run database migrations
 
 #push
-- name: 'gcr.io/tccmba/docker'
-  args: ['push', 'gcr.io/tccmba/gcloud']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/tccmba/flask']
 
 # # Testes
 
 # Implantação no Cloud Run
-- name: 'gcr.io/tccmba/gcloud'
+- name: 'gcr.io/cloud-builders/gcloud'
   args:
     - 'run'
     - 'deploy'
     - 'tcc-backend-services'
-    - '--image=gcr.io/tccmba/gcloud'
+    - '--image=gcr.io/tccmba/flask'
     - '--platform=managed'
     - '--region=southamerica-east1'
     - '--allow-unauthenticated'
