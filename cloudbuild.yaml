@@ -1,13 +1,13 @@
 steps:
 # Compilação do container
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/tccmba/tcc-backend', '.']
+  args: ['build', '-t', 'gcr.io/cloud-builders/gcloud', '.']
 
 # # Run database migrations
 
 #push
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/tccmba/tcc-backend']
+  args: ['push', 'gcr.io/cloud-builders/gcloud']
 
 # # Testes
 
@@ -17,7 +17,7 @@ steps:
     - 'run'
     - 'deploy'
     - 'tcc-backend-services'
-    - '--image=gcr.io/tccmba/tcc-backend'
+    - '--image=gcr.io/cloud-builders/gcloud'
     - '--platform=managed'
     - '--region=southamerica-east1'
     - '--allow-unauthenticated'
